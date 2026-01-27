@@ -1,0 +1,19 @@
+{
+  "name": "GameFrameX.Payment.Alipay.Editor",
+  "rootNamespace": "GameFrameX.Payment.Alipay.Editor",
+  "references": [
+    "GameFrameX.Payment.Alipay.Runtime",
+    "GameFrameX.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
