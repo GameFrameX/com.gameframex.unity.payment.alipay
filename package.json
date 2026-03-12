@@ -12,7 +12,7 @@
   ],
   "repository": {
     "name": "com.gameframex.unity.payment.alipay",
-    "url": "https://github.com/gameframex/com.gameframex.unity.payment.alipay.git",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.payment.alipay.git",
     "type": "git"
   },
   "author": {
