@@ -37,7 +37,9 @@ namespace GameFrameX.Payment.Alipay.Runtime
     {
         void Start()
         {
+#if UNITY_ANDROID
             _ = typeof(GameFrameX.Payment.Alipay.Runtime.AlipayAndroidImpl);
+#endif
             _ = typeof(GameFrameX.Payment.Alipay.Runtime.AlipayComponent);
             _ = typeof(GameFrameX.Payment.Alipay.Runtime.AliPayLinkBridge);
             _ = typeof(GameFrameX.Payment.Alipay.Runtime.AlipayManager);
