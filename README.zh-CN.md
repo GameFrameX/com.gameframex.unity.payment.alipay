@@ -82,6 +82,16 @@ Then add the package to `dependencies`:
 
 - QQ群：通过 [二维码](https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6) 加入
 
+
+## 依赖
+
+| 包 | 说明 |
+|----|------|
+| `com.gameframex.unity` | 1.1.1 |
+
+## 更新日志
+
+查看 [Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.payment.alipay/releases) 了解更新日志。
 ## 开源协议
 
 详见 [LICENSE.md](LICENSE.md) 文件。
