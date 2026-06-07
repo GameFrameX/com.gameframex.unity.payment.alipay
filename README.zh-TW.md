@@ -35,59 +35,36 @@
 
 ## 快速開始
 
-### 安裝方式
+### 安裝
 
-任選其一：
+編輯 Unity 專案的 `Packages/manifest.json`，添加 `scopedRegistries` 部分：
 
-1. 直接在 `manifest.json` 的文件中的 `dependencies` 節點下新增以下內容
-   ```json
-   {"com.gameframex.unity.payment.alipay": "https://github.com/AlianBlank/com.gameframex.unity.payment.alipay.git"}
-   ```
-2. 在 Unity 的 `Packages Manager` 中使用 `Git URL` 的方式新增庫，地址為：https://github.com/AlianBlank/com.gameframex.unity.payment.alipay.git
-3. 直接下載倉庫放置到 Unity 專案的 `Packages` 目錄下，會自動載入識別。
-
-### 使用範例
-
-```csharp
-using GameFrameX.Runtime;
-using GameFrameX.Payment.Alipay.Runtime;
-
-public class PaymentExample : MonoBehaviour
+```json
 {
-    private void Start()
+  "scopedRegistries": [
     {
-        // 1. 取得支付寶管理器介面
-        var alipayManager = GameFrameworkEntry.GetModule<IAlipayManager>();
-
-        if (alipayManager != null)
-        {
-            // 2. 準備訂單資訊（通常由伺服器產生）
-            string orderInfo = "app_id=...&biz_content=...&sign=...";
-
-            // 3. 發起支付
-            alipayManager.Pay(orderInfo, OnPayResult);
-        }
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
     }
-
-    private void OnPayResult(AlipayResult result)
-    {
-        Debug.Log($"支付狀態: {result.resultStatus}");
-        Debug.Log($"支付結果: {result.result}");
-        Debug.Log($"備註資訊: {result.memo}");
-
-        if (result.resultStatus == "9000")
-        {
-            Debug.Log("支付成功");
-        }
-        else
-        {
-            Debug.LogError("支付失敗或取消");
-        }
-    }
+  ]
 }
 ```
 
-確保場景中存在 `AlipayComponent` 組件。通常該組件會作為 GameFrameX 框架的一部分自動載入，或者手動掛載在某個 GameObject 上。
+`scopes` 控制哪些套件透過此註冊表解析。只有以 `com.gameframex` 開頭的套件才會從這個註冊表取得。
+
+Then add the package to `dependencies`:
+
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.payment.alipay": "1.0.0"
+  }
+}
+```
+
 
 ## 平台支援
 

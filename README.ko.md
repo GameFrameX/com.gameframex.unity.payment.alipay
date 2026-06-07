@@ -37,57 +37,34 @@
 
 ### 설치
 
-다음 방법 중 하나를 선택하세요:
+Unity 프로젝트의 `Packages/manifest.json`을 편집하여 `scopedRegistries` 섹션을 추가하세요:
 
-1. 프로젝트의 `manifest.json` 파일의 `dependencies` 섹션에 다음 내용을 추가:
-   ```json
-   {"com.gameframex.unity.payment.alipay": "https://github.com/AlianBlank/com.gameframex.unity.payment.alipay.git"}
-   ```
-2. Unity의 `Package Manager`에서 `Git URL`을 사용하여 추가: https://github.com/AlianBlank/com.gameframex.unity.payment.alipay.git
-3. 리포지토리를 다운로드하여 Unity 프로젝트의 `Packages` 디렉토리에 배치 (자동으로 로드됩니다).
-
-### 사용 예시
-
-```csharp
-using GameFrameX.Runtime;
-using GameFrameX.Payment.Alipay.Runtime;
-
-public class PaymentExample : MonoBehaviour
+```json
 {
-    private void Start()
+  "scopedRegistries": [
     {
-        // 1. Alipay 매니저 인터페이스 가져오기
-        var alipayManager = GameFrameworkEntry.GetModule<IAlipayManager>();
-
-        if (alipayManager != null)
-        {
-            // 2. 주문 정보 준비 (보통 서버에서 생성)
-            string orderInfo = "app_id=...&biz_content=...&sign=...";
-
-            // 3. 결제 시작
-            alipayManager.Pay(orderInfo, OnPayResult);
-        }
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
     }
-
-    private void OnPayResult(AlipayResult result)
-    {
-        Debug.Log($"결제 상태: {result.resultStatus}");
-        Debug.Log($"결제 결과: {result.result}");
-        Debug.Log($"메모: {result.memo}");
-
-        if (result.resultStatus == "9000")
-        {
-            Debug.Log("결제 성공");
-        }
-        else
-        {
-            Debug.LogError("결제 실패 또는 취소");
-        }
-    }
+  ]
 }
 ```
 
-씬에 `AlipayComponent`가 있는지 확인하세요. 보통 GameFrameX 프레임워크의 일부로 자동 로드되거나 GameObject에 수동으로 추가합니다.
+`scopes`는 이 레지스트리를 통해 어떤 패키지를 해석할지 제어합니다. `com.gameframex`로 시작하는 패키지만 이 레지스트리에서 가져옵니다.
+
+Then add the package to `dependencies`:
+
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.payment.alipay": "1.0.0"
+  }
+}
+```
+
 
 ## 플랫폼 지원
 
