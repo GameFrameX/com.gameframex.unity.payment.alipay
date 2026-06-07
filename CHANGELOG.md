@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.0.0...1.0.1) (2026-06-07)
+
+
+### Bug Fixes
+
+* 补全包规范文件（LICENSE/CHANGELOG/URL 字段/unity 字段） ([4838b0b](https://github.com/gameframex/com.gameframex.unity.payment.alipay/commit/4838b0baf8cfb158169d89f23012c80f6ea4af8a))
+
 # 1.0.0 (2026-03-12)
 
 

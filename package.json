@@ -3,7 +3,7 @@
   "displayName": "Game Frame X Payment Alipay",
   "category": "Game Framework X",
   "description": "独立游戏前后端一体化解决方案,独立游戏开发者的圆梦大使。\n文档地址: https://gameframex.doc.alianblank.com \n Game Frame X Payment Alipay 支付宝支付插件。",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2019.4",
   "keywords": [
     "Game Framework X",
