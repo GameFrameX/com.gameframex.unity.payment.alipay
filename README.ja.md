@@ -20,6 +20,7 @@
 [English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | **日本語** | [한국어](README.ko.md)
 
 </div>
+
 ## プロジェクト概要
 
 **Payment Alipay コンポーネント** - Unity 向け Alipay（支付宝）決済統合を提供します。Android、iOS、および Editor シミュレーションモードをサポートします。
