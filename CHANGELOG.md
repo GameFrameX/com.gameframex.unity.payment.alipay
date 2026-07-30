@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.0.1...1.0.2) (2026-07-30)
+
+
+### Bug Fixes
+
+* 增强 Alipay 初始化和支付流程的有效性，添加空值检查 ([e330e71](https://github.com/gameframex/com.gameframex.unity.payment.alipay/commit/e330e711c6e516a57bb1607adb0f07013b82517d))
+* 更新依赖项 com.gameframex.unity 至 2.5.1 ([b55ed8d](https://github.com/gameframex/com.gameframex.unity.payment.alipay/commit/b55ed8d478f5f776805b6c48ae4ddf371b371b81))
+
 ## [1.0.1](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.0.0...1.0.1) (2026-06-07)
 
 
