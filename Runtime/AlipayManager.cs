@@ -50,11 +50,23 @@ namespace GameFrameX.Payment.Alipay.Runtime
         /// <param name="isSandbox">是否为沙箱环境</param>
         public void Init(string appId, bool isSandbox)
         {
+            if (string.IsNullOrEmpty(appId))
+            {
+                Debug.LogWarning("[AlipayManager] AppId is empty. Alipay initialization skipped.");
+                return;
+            }
+
 #if UNITY_ANDROID
             _impl = new AlipayAndroidImpl();
 #elif UNITY_IOS
             _impl = new AlipayIOSImpl();
 #endif
+            if (_impl == null)
+            {
+                Debug.LogWarning("[AlipayManager] Current platform does not provide an Alipay implementation. Alipay initialization skipped.");
+                return;
+            }
+
             _impl.Init(appId, isSandbox);
         }
 

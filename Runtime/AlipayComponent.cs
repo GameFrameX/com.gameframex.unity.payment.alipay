@@ -58,6 +58,10 @@ namespace GameFrameX.Payment.Alipay.Runtime
             InterfaceComponentType = typeof(IAlipayManager);
 
             base.Awake();
+            if (!IsRuntimeComponentReady)
+            {
+                return;
+            }
 
             _alipayManager = GameFrameworkEntry.GetModule<IAlipayManager>();
             if (_alipayManager == null)
@@ -66,7 +70,10 @@ namespace GameFrameX.Payment.Alipay.Runtime
                 return;
             }
 
-            _alipayManager.Init(m_AppId, m_IsSandbox);
+            if (!string.IsNullOrEmpty(m_AppId))
+            {
+                _alipayManager.Init(m_AppId, m_IsSandbox);
+            }
         }
 
         /// <summary>
@@ -76,6 +83,19 @@ namespace GameFrameX.Payment.Alipay.Runtime
         /// <param name="callback">支付回调</param>
         public void Pay(string orderInfo, Action<AlipayResult> callback)
         {
+            if (_alipayManager == null)
+            {
+                Log.Error("Alipay manager is invalid.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(m_AppId))
+            {
+                Log.Error("Alipay AppId is invalid.");
+                return;
+            }
+
+            _alipayManager.Init(m_AppId, m_IsSandbox);
             _alipayManager.Pay(orderInfo, callback);
         }
     }
