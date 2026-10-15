@@ -1,30 +1,21 @@
 #import <Foundation/Foundation.h>
 #import <AlipaySDK/AlipaySDK.h>
 
-NSString *g_AlipayScheme = nil;
-
-// 导出函数：初始化
-extern "C" void __gameframex_alipay_init(const char* appId, bool isSandbox) {
-    if (appId) {
-        // 注意：这里的 appId 应与 Info.plist 中的 URL Scheme 一致
-        // 如果你的 Scheme 有前缀（如 'ali' + appId），请在此处拼接
-        g_AlipayScheme = [NSString stringWithUTF8String:appId];
-        NSLog(@"[AlipayBridge] Initialized with scheme: %@", g_AlipayScheme);
-    }
-}
-
 // 导出函数：支付
-extern "C" void __gameframex_alipay_pay(const char* orderInfo) {
+// orderInfo: 服务端生成的签名订单串
+// scheme: 与 Info.plist 中 URL Scheme 一致的支付宝应用ID，用于支付完成后跳回 App
+extern "C" void __gameframex_alipay_pay(const char* orderInfo, const char* scheme) {
     if (orderInfo == NULL) {
         NSLog(@"[AlipayBridge] Order info is null");
         return;
     }
-    
+
     NSString *orderStr = [NSString stringWithUTF8String:orderInfo];
-    
+    NSString *schemeStr = scheme ? [NSString stringWithUTF8String:scheme] : nil;
+
     // 调用支付宝 SDK
     // 注意：fromScheme 必须与 Info.plist 中配置的一致，否则无法跳转回 App
-    [[AlipaySDK defaultService] payOrder:orderStr fromScheme:g_AlipayScheme callback:^(NSDictionary *resultDic) {
+    [[AlipaySDK defaultService] payOrder:orderStr fromScheme:schemeStr callback:^(NSDictionary *resultDic) {
         // 这个 block 主要用于 H5 支付回调或未安装支付宝 App 的情况
         NSLog(@"[AlipayBridge] payOrder callback called");
         // 将结果字典转换为 JSON 字符串

@@ -70,9 +70,9 @@ namespace GameFrameX.Payment.Alipay.Editor
 
             // 注意：URL Scheme 配置
             // 支付宝支付需要配置 URL Scheme 以便从支付宝 App 跳转回游戏。
-            // 由于 AppID 在 Runtime 组件中配置，构建时无法自动获取，建议开发者手动在 Xcode 设置
-            // 或者在此处硬编码添加。
-            // 
+            // AppId 在运行时通过 AlipayPurchaseParams.AppId 传入（需与此处 URL Scheme 一致），
+            // 构建时无法自动获取，建议开发者手动在 Xcode 设置或者在此处硬编码添加。
+            //
             // 示例代码：
             // string appId = "your_alipay_app_id";
             // AddUrlScheme(pathToBuiltProject, appId);

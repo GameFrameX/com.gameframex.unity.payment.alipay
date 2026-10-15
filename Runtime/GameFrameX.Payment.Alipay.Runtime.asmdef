@@ -2,7 +2,8 @@
   "name": "GameFrameX.Payment.Alipay.Runtime",
   "rootNamespace": "GameFrameX.Payment.Alipay",
   "references": [
-    "GameFrameX.Runtime"
+    "GameFrameX.Runtime",
+    "GameFrameX.Payment.Runtime"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
