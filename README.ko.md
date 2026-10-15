@@ -23,15 +23,37 @@
 
 ## 프로젝트 개요
 
-**Payment Alipay 컴포넌트** - Unity용 Alipay(支付宝) 결제 통합을 제공합니다. Android, iOS 및 Editor 시뮬레이션 모드를 지원합니다.
+**Payment Alipay 컴포넌트** - Unity용 Alipay(支付宝) 결제 통합을 제공합니다. `IPaymentManager` 채널 구현으로서 `PaymentComponent`에 연결되며 별도 컴포넌트가 필요하지 않습니다. Android와 iOS를 지원합니다.
 
 ### 기능
 
-- `IAlipayManager`를 통한 통합 결제 인터페이스
+- `IPaymentManager`의 Alipay 채널 구현. `PaymentComponent`의 플랫폼 결제 컴포넌트에서 `AlipayManager`를 선택하기만 하면 활성화됩니다
+- 서버에서 서명한 주문 문자열을 `AlipayPurchaseParams`로 전달하여 결제를 시작하고, 결과는 `OnPurchaseSuccess` / `OnPurchaseFailed` 이벤트로 통합 전달됩니다
 - Android 지원 (`com.alipay.sdk.app.PayTask` 통해)
-- iOS 지원 (네이티브 라이브러리 호출 통해)
-- Editor 시뮬레이션 테스트 (성공 콜백 시뮬레이션)
+- iOS 지원 (네이티브 라이브러리 호출 통해, `AppId`는 Info.plist의 URL Scheme과 일치해야 합니다)
 - 콜백이 메인 스레드에서 실행되도록 자동 스레드 전환
+- 시작 시 결제 채널 레지스트리(PaymentChannelRegistry)에 자동 등록되며, 이 패키지가 설치되지 않으면 등록도 발생하지 않습니다. `GetAvailableChannels()`로 사용 가능한 채널을 조회할 수 있습니다
+
+### 사용 예시
+
+```csharp
+// PaymentComponent의 플랫폼 결제 컴포넌트에서 GameFrameX.Payment.Alipay.Runtime.AlipayManager 선택
+// 서버에서 주문을 생성한 후 서명된 주문 문자열로 결제를 시작합니다
+GameApp.Payment.Buy(new AlipayPurchaseParams(productId, orderId, orderInfo)
+{
+    AppId = "Alipay 앱 ID", // iOS에서는 필수이며 Info.plist의 URL Scheme과 일치해야 합니다. Android에서는 불필요
+});
+
+// 사용 가능한 결제 수단 조회(UI 표시용, 구매 매개변수는 alipay 채널로 자동 라우팅됨)
+foreach (var channel in GameApp.Payment.GetAvailableChannels())
+{
+    // channel.ChannelId / channel.DisplayName / channel.IsAvailable
+}
+
+GameApp.Payment.OnPurchaseSuccess += (sender, e) => { // 결제 결과는 서버 측 주문 검증을 기준으로 함 };
+GameApp.Payment.OnPurchaseFailed += (sender, e) => { };
+```
+
 
 ## 빠른 시작
 
@@ -73,7 +95,7 @@
 |--------|------|
 | Android | 예 |
 | iOS | 예 |
-| Editor (시뮬레이션) | 예 |
+| Editor | 아니요 (로그만 출력) |
 
 ## 문서 및 자료
 
@@ -90,6 +112,7 @@
 | 패키지 | 설명 |
 |--------|------|
 | `com.gameframex.unity` | 1.1.1 |
+| `com.gameframex.unity.payment` | 2.0.0 |
 
 ## 변경 로그
 

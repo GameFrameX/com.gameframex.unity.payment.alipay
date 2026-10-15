@@ -23,15 +23,37 @@ All-in-One Solution for Indie Game Development · Empowering Indie Developers' D
 
 ## Project Overview
 
-**Payment Alipay Component** - Provides Alipay payment integration for Unity. Supports Android, iOS, and Editor simulation mode.
+**Payment Alipay Component** - Provides Alipay payment integration for Unity as an `IPaymentManager` channel implementation plugged into `PaymentComponent`, with no separate component required. Supports Android and iOS.
 
 ### Features
 
-- Unified payment interface via `IAlipayManager`
+- Implements the `IPaymentManager` Alipay channel; enable it by selecting `AlipayManager` as the platform payment manager on `PaymentComponent`
+- Starts a payment with the server-signed order string via `AlipayPurchaseParams`; results are reported through the unified `OnPurchaseSuccess` / `OnPurchaseFailed` events
 - Android support (via `com.alipay.sdk.app.PayTask`)
-- iOS support (via native library calls)
-- Editor simulation testing (simulates successful payment callback)
+- iOS support (via native library calls; `AppId` must match the URL Scheme in Info.plist)
 - Automatic thread switching to ensure callbacks run on the main thread
+- Self-registers into the payment channel registry (PaymentChannelRegistry) at startup; the registration simply does not happen when this package is absent. Query available channels via `GetAvailableChannels()`
+
+### Usage
+
+```csharp
+// Select GameFrameX.Payment.Alipay.Runtime.AlipayManager as the platform payment manager on PaymentComponent
+// After the server creates the order, pay with the signed order string
+GameApp.Payment.Buy(new AlipayPurchaseParams(productId, orderId, orderInfo)
+{
+    AppId = "your alipay app id", // Required on iOS, must match the URL Scheme in Info.plist; not needed for Android
+});
+
+// Query available payment methods (for UI display; purchase params are automatically bound to the alipay channel route)
+foreach (var channel in GameApp.Payment.GetAvailableChannels())
+{
+    // channel.ChannelId / channel.DisplayName / channel.IsAvailable
+}
+
+GameApp.Payment.OnPurchaseSuccess += (sender, e) => { /* Verify the payment result against the server order */ };
+GameApp.Payment.OnPurchaseFailed += (sender, e) => { };
+```
+
 
 ## Quick Start
 
@@ -73,7 +95,7 @@ Choose one of the following methods:
 |----------|-----------|
 | Android | Yes |
 | iOS | Yes |
-| Editor (Simulation) | Yes |
+| Editor | No (log only) |
 
 ## Documentation & Resources
 
@@ -90,6 +112,7 @@ Choose one of the following methods:
 | Package | Description |
 |---------|-------------|
 | `com.gameframex.unity` | 1.1.1 |
+| `com.gameframex.unity.payment` | 2.0.0 |
 
 ## Changelog
 

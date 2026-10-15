@@ -23,15 +23,37 @@
 
 ## 項目簡介
 
-**Payment Alipay 支付寶支付組件** - 提供 Unity 支付寶支付整合。支援 Android、iOS 和 Editor 模擬模式。
+**Payment Alipay 支付寶支付組件** - 提供 Unity 支付寶支付整合，作為 `IPaymentManager` 的渠道實作接入 `PaymentComponent`，無需獨立組件。支援 Android 與 iOS。
 
 ### 功能特性
 
-- 提供統一的支付介面 `IAlipayManager`
+- 作為 `IPaymentManager` 的支付寶渠道實作，在 `PaymentComponent` 的平台支付組件中選擇 `AlipayManager` 即可啟用
+- 透過 `AlipayPurchaseParams` 傳入伺服器簽名訂單串發起支付，結果統一透過 `OnPurchaseSuccess` / `OnPurchaseFailed` 事件回呼
 - 支援 Android 平台（透過 `com.alipay.sdk.app.PayTask`）
-- 支援 iOS 平台（透過原生庫呼叫）
-- 支援 Editor 模擬測試（模擬支付成功回呼）
+- 支援 iOS 平台（透過原生庫呼叫，`AppId` 需與 Info.plist 的 URL Scheme 一致）
 - 自動處理執行緒切換，確保回呼在主執行緒執行
+- 啟動時自動註冊到支付渠道註冊表（PaymentChannelRegistry），未安裝本包則註冊不會發生；可透過 `GetAvailableChannels()` 查詢可用渠道
+
+### 使用示例
+
+```csharp
+// 在 PaymentComponent 的平台支付組件中選擇 GameFrameX.Payment.Alipay.Runtime.AlipayManager
+// 伺服器下單後，使用簽名訂單串發起支付
+GameApp.Payment.Buy(new AlipayPurchaseParams(productId, orderId, orderInfo)
+{
+    AppId = "支付寶應用ID", // iOS 必填，需與 Info.plist 的 URL Scheme 一致；Android 收單支付不需要
+});
+
+// 查詢可用支付方式（UI 展示用，購買參數已自動綁定 alipay 渠道路由）
+foreach (var channel in GameApp.Payment.GetAvailableChannels())
+{
+    // channel.ChannelId / channel.DisplayName / channel.IsAvailable
+}
+
+GameApp.Payment.OnPurchaseSuccess += (sender, e) => { /* 支付結果以伺服器訂單校驗為準 */ };
+GameApp.Payment.OnPurchaseFailed += (sender, e) => { };
+```
+
 
 ## 快速開始
 
@@ -73,7 +95,7 @@
 |------|------|
 | Android | 是 |
 | iOS | 是 |
-| Editor（模擬） | 是 |
+| Editor | 否（僅日誌提示） |
 
 ## 文檔與資源
 
@@ -90,6 +112,7 @@
 | 套件 | 說明 |
 |------|------|
 | `com.gameframex.unity` | 1.1.1 |
+| `com.gameframex.unity.payment` | 2.0.0 |
 
 ## 更新日誌
 
