@@ -3,7 +3,7 @@
     "displayName": "Game Frame X Payment Alipay",
     "category": "Game Frame X",
     "description": "GameFrameX Payment Alipay — Alipay payment channel for GameFrameX Payment, implemented as an IPaymentManager (AlipayManager) selectable on PaymentComponent. Starts payments with a server-signed order string via AlipayPurchaseParams and reports results through the unified OnPurchaseSuccess / OnPurchaseFailed events, with callbacks dispatched on the main thread. Supports Android (com.alipay.sdk.app.PayTask) and iOS (native calls; AppId must match the Info.plist URL Scheme), and self-registers into PaymentChannelRegistry at startup. Docs: https://gameframex.doc.alianblank.com\n\nGameFrameX Payment Alipay — GameFrameX Payment 的支付宝支付渠道包，作为 IPaymentManager 实现（AlipayManager），在 PaymentComponent 上选择即可启用。通过 AlipayPurchaseParams 传入服务端签名订单串发起支付，结果经统一的 OnPurchaseSuccess / OnPurchaseFailed 事件回调，并自动切换到主线程执行。支持 Android（com.alipay.sdk.app.PayTask）与 iOS（原生调用，AppId 需与 Info.plist 的 URL Scheme 一致），启动时自注册进 PaymentChannelRegistry。文档：https://gameframex.doc.alianblank.com",
-    "version": "2.0.0",
+    "version": "1.1.0",
     "unity": "2019.4",
     "keywords": [
         "Game Frame X",

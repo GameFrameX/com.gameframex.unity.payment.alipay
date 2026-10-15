@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.0.2...1.1.0) (2026-10-15)
+
+
+### Features
+
+* **payment:** 支付宝渠道化改造为 payment 渠道包 ([84043f6](https://github.com/gameframex/com.gameframex.unity.payment.alipay/commit/84043f6cc9ced9fe79b363191812588d7ad1b92d))
+
 # [2.0.0](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.0.2...2.0.0) (2026-10-08)
 
 
