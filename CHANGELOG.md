@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.1.0...1.2.0) (2026-10-16)
+
+
+### Features
+
+* **alipay:** 渠道注册增加真机平台围栏 ([259d97b](https://github.com/gameframex/com.gameframex.unity.payment.alipay/commit/259d97b75480b2b9d54958abde49e0a7ec09868c))
+
 # [1.1.0](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.0.2...1.1.0) (2026-10-15)
 
 
