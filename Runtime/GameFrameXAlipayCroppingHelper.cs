@@ -48,7 +48,9 @@ namespace GameFrameX.Payment.Alipay.Runtime
             _ = typeof(GameFrameX.Payment.Alipay.Runtime.AlipayPurchaseParams);
             _ = typeof(GameFrameX.Payment.Alipay.Runtime.AlipayResult);
             _ = typeof(GameFrameX.Payment.Alipay.Runtime.IAlipayImpl);
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
             _ = typeof(GameFrameX.Payment.Alipay.Runtime.AlipayPaymentBootstrap);
+#endif
         }
     }
 }

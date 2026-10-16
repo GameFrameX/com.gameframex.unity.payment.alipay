@@ -21,6 +21,7 @@
 
 using GameFrameX.Payment.Runtime;
 
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
 namespace GameFrameX.Payment.Alipay.Runtime
 {
     /// <summary>
@@ -28,6 +29,7 @@ namespace GameFrameX.Payment.Alipay.Runtime
     /// </summary>
     /// <remarks>
     /// 在 BeforeSceneLoad 阶段（早于 PaymentComponent.Awake）将渠道注册进 PaymentChannelRegistry；
+    /// 仅真机 Android / iOS 注册——Editor 下不注册，保证 DefaultPaymentManager 的编辑器模拟生效；
     /// 未安装本包时代码被裁剪，注册不会发生。
     /// </remarks>
     [UnityEngine.Scripting.Preserve]
@@ -41,3 +43,4 @@ namespace GameFrameX.Payment.Alipay.Runtime
         }
     }
 }
+#endif

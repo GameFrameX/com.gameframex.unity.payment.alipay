@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "com.gameframex.unity": "3.0.0",
-        "com.gameframex.unity.payment": "2.0.0"
+        "com.gameframex.unity.payment": "3.0.0"
     },
     "devDependencies": {
         "semantic-release": "^24.2.0",
