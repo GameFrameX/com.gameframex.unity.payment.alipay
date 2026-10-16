@@ -27,7 +27,7 @@
 
 ### 機能
 
-- `IPaymentManager` の Alipay チャネル実装。`PaymentComponent` のプラットフォーム決済コンポーネントで `AlipayManager` を選択するだけで有効になります
+- `IPaymentManager` の Alipay チャネル実装。本パッケージをインストールすると起動時に `alipay` チャネルとして自動登録され（実機 Android / iOS のみ）、`AlipayPurchaseParams` が自動ルーティングします。`PaymentComponent` の設定は不要です
 - サーバーが署名した注文文字列を `AlipayPurchaseParams` で渡して決済を開始し、結果は `OnPurchaseSuccess` / `OnPurchaseFailed` イベントで統一的に通知されます
 - Android サポート（`com.alipay.sdk.app.PayTask` 経由）
 - iOS サポート（ネイティブライブラリコール経由、`AppId` は Info.plist の URL Scheme と一致させる必要があります）
@@ -37,7 +37,7 @@
 ### 使用例
 
 ```csharp
-// PaymentComponent のプラットフォーム決済コンポーネントで GameFrameX.Payment.Alipay.Runtime.AlipayManager を選択
+// 本パッケージのインストールで alipay チャネルが自動登録されます。PaymentComponent の設定は不要
 // サーバーで注文を作成した後、署名済み注文文字列で決済を開始します
 GameApp.Payment.Buy(new AlipayPurchaseParams(productId, orderId, orderInfo)
 {

@@ -27,7 +27,7 @@
 
 ### 功能特性
 
-- 作為 `IPaymentManager` 的支付寶渠道實作，在 `PaymentComponent` 的平台支付組件中選擇 `AlipayManager` 即可啟用
+- 作為 `IPaymentManager` 的支付寶渠道實作，安裝本包後啟動時自動註冊為 `alipay` 渠道（僅真機 Android / iOS），`AlipayPurchaseParams` 自動路由，無需在 `PaymentComponent` 上做任何配置
 - 透過 `AlipayPurchaseParams` 傳入伺服器簽名訂單串發起支付，結果統一透過 `OnPurchaseSuccess` / `OnPurchaseFailed` 事件回呼
 - 支援 Android 平台（透過 `com.alipay.sdk.app.PayTask`）
 - 支援 iOS 平台（透過原生庫呼叫，`AppId` 需與 Info.plist 的 URL Scheme 一致）
@@ -37,7 +37,7 @@
 ### 使用示例
 
 ```csharp
-// 在 PaymentComponent 的平台支付組件中選擇 GameFrameX.Payment.Alipay.Runtime.AlipayManager
+// 安裝本包即自動註冊 alipay 渠道，無需配置 PaymentComponent
 // 伺服器下單後，使用簽名訂單串發起支付
 GameApp.Payment.Buy(new AlipayPurchaseParams(productId, orderId, orderInfo)
 {

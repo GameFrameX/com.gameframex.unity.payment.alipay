@@ -27,7 +27,7 @@ All-in-One Solution for Indie Game Development · Empowering Indie Developers' D
 
 ### Features
 
-- Implements the `IPaymentManager` Alipay channel; enable it by selecting `AlipayManager` as the platform payment manager on `PaymentComponent`
+- Implements the `IPaymentManager` Alipay channel; installing this package self-registers the `alipay` channel at startup (device Android / iOS only) and `AlipayPurchaseParams` routes automatically — no `PaymentComponent` configuration needed
 - Starts a payment with the server-signed order string via `AlipayPurchaseParams`; results are reported through the unified `OnPurchaseSuccess` / `OnPurchaseFailed` events
 - Android support (via `com.alipay.sdk.app.PayTask`)
 - iOS support (via native library calls; `AppId` must match the URL Scheme in Info.plist)
@@ -37,7 +37,7 @@ All-in-One Solution for Indie Game Development · Empowering Indie Developers' D
 ### Usage
 
 ```csharp
-// Select GameFrameX.Payment.Alipay.Runtime.AlipayManager as the platform payment manager on PaymentComponent
+// Installing this package registers the alipay channel automatically; no PaymentComponent configuration needed
 // After the server creates the order, pay with the signed order string
 GameApp.Payment.Buy(new AlipayPurchaseParams(productId, orderId, orderInfo)
 {
