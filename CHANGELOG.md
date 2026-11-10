@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.2.0...1.2.1) (2026-11-10)
+
+
+### Bug Fixes
+
+* **payment.alipay:** 添加完整 link.xml 防代码裁剪保护 ([4dd657a](https://github.com/gameframex/com.gameframex.unity.payment.alipay/commit/4dd657ae80a898d9e13d05a0610a75bed7f322da))
+
 # [1.2.0](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.1.0...1.2.0) (2026-10-16)
 
 
