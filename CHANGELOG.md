@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.2.1...1.2.2) (2026-11-11)
+
+
+### Bug Fixes
+
+* **payment-alipay:** AndroidJavaClass 懒加载兼容 C# 7.3 ([e5395e7](https://github.com/gameframex/com.gameframex.unity.payment.alipay/commit/e5395e72dae3dede58b0274c6d2fa57df98c0335))
+
 ## [1.2.1](https://github.com/gameframex/com.gameframex.unity.payment.alipay/compare/1.2.0...1.2.1) (2026-11-10)
 
 
