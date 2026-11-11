@@ -36,7 +36,15 @@ namespace GameFrameX.Payment.Alipay.Runtime
         [UnityEngine.Scripting.Preserve]
         private AndroidJavaClass ClassInstance
         {
-            get { return _javaClass ??= new AndroidJavaClass(JavaClassName); }
+            get
+            {
+                if (_javaClass == null)
+                {
+                    _javaClass = new AndroidJavaClass(JavaClassName);
+                }
+
+                return _javaClass;
+            }
         }
 
         /// <summary>
